@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Tetris.Properties" GeneratedClassName="KeyMapping">
+  <Profiles />
+  <Settings>
+    <Setting Name="Left" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Left;</Value>
+    </Setting>
+    <Setting Name="Right" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Right;</Value>
+    </Setting>
+    <Setting Name="RotateLeft" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A;Up;</Value>
+    </Setting>
+    <Setting Name="RotateRight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D;</Value>
+    </Setting>
+    <Setting Name="Drop" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Down;Space;</Value>
+    </Setting>
+    <Setting Name="Pause" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>OK</value>
+    <comment>Accept button</comment>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>IP address</comment>
+  </data>
+  <data name="B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel button</comment>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ConnectionLost" xml:space="preserve">
+    <value>Connection lost</value>
+    <comment>Connection lost string on multiplayer</comment>
+  </data>
+  <data name="Drop" xml:space="preserve">
+    <value>Drop</value>
+  </data>
+  <data name="EscToFinish" xml:space="preserve">
+    <value>ESC to Finish</value>
+    <comment>"Press escape to finish" string shown on keyboard setup</comment>
+  </data>
+  <data name="FinalScoreS" xml:space="preserve">
+    <value>Score:</value>
+    <comment>Score string on single player</comment>
+  </data>
+  <data name="GameOverM" xml:space="preserve">
+    <value>Game over</value>
+    <comment>Losing string on multiplayer</comment>
+  </data>
+  <data name="GameOverS" xml:space="preserve">
+    <value>Game over</value>
+    <comment>Losing string on single player</comment>
+  </data>
+  <data name="HeightString" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="HostGame" xml:space="preserve">
+    <value>Host</value>
+    <comment>Host game button</comment>
+  </data>
+  <data name="HostTitle" xml:space="preserve">
+    <value>Host game</value>
+    <comment>Host game form title</comment>
+  </data>
+  <data name="InvalidIP" xml:space="preserve">
+    <value>Invalid IP address</value>
+    <comment>Error string on invalid ip address</comment>
+  </data>
+  <data name="InvalidPort" xml:space="preserve">
+    <value>Unable to listen on port</value>
+    <comment>Invalid port string prefix</comment>
+  </data>
+  <data name="JoinGame" xml:space="preserve">
+    <value>Join</value>
+    <comment>Join game button</comment>
+  </data>
+  <data name="JoinTitle" xml:space="preserve">
+    <value>Join game</value>
+    <comment>Join game form title</comment>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+    <comment>Level string shown in-game</comment>
+  </data>
+  <data name="LevelString" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="LevelTitle" xml:space="preserve">
+    <value>Select level</value>
+    <comment>Single player level selection form title</comment>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>Lines</value>
+    <comment>Cleared lines string shown in-game</comment>
+  </data>
+  <data name="ModeATitle" xml:space="preserve">
+    <value>(Mode A)</value>
+    <comment>Mode A suffix</comment>
+  </data>
+  <data name="ModeBTitle" xml:space="preserve">
+    <value>(Mode B)</value>
+    <comment>Mode B suffix</comment>
+  </data>
+  <data name="ModeString" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="MultiTitle" xml:space="preserve">
+    <value>Tetris - Multiplayer</value>
+    <comment>Multiplayer form title prefix</comment>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+    <comment>Next string shown in-game</comment>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>The following keys are not set</value>
+    <comment>Error string prefix on keyboard incomplete setup</comment>
+  </data>
+  <data name="OpponentScore" xml:space="preserve">
+    <value>Opponent score</value>
+    <comment>Opponent score string prefix on multiplayer</comment>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pause</value>
+    <comment>Pause button in keyboard settings</comment>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Paused</value>
+    <comment>Pause string shown in-game</comment>
+  </data>
+  <data name="PlayerScore" xml:space="preserve">
+    <value>Player score</value>
+    <comment>Player score string prefix on multiplayer</comment>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+    <comment>Port number</comment>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Rotate L</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Rotate R</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+    <comment>Score string shown in-game</comment>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Unable to connect server</value>
+    <comment>Connection error string</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Keyboard settings</comment>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Key binginds setup</value>
+    <comment>Keyboard settings form title</comment>
+  </data>
+  <data name="SinglePlayer" xml:space="preserve">
+    <value>Single</value>
+    <comment>Single player button</comment>
+  </data>
+  <data name="SingleTitle" xml:space="preserve">
+    <value>Tetris - Single Player</value>
+    <comment>Single player form title prefix</comment>
+  </data>
+  <data name="StartTitle" xml:space="preserve">
+    <value>Tetris</value>
+    <comment>Start form title</comment>
+  </data>
+  <data name="Timeout" xml:space="preserve">
+    <value>No client tried to connect before timeout</value>
+    <comment>Timeout error</comment>
+  </data>
+  <data name="WonM" xml:space="preserve">
+    <value>You won</value>
+    <comment>Winning string on multiplayer</comment>
+  </data>
+  <data name="WonS" xml:space="preserve">
+    <value>You won</value>
+    <comment>Winning string on single player</comment>
+  </data>
+</root>

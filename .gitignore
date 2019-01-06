@@ -1,0 +1,5 @@
+*~
+Tetris/obj
+Tetris/bin/Debug
+Tetris/bin/Release/*
+!Tetris/bin/Release/Tetris.exe
