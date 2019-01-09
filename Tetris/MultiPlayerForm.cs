@@ -67,8 +67,11 @@ namespace Tetris
             client = t;
             stream = client.GetStream();
 
-            t1 = new NetworkTetris(10, 16, stream, true, host, level, bMode, bHeight); // Transmitter: the form events control this instance and the updates are sent to the opponent.
-            t2 = new NetworkTetris(10, 16, stream, false, host, level, bMode, bHeight); // Receiver: the network stream updates this instance with the opponent moves.
+            t1 = new NetworkTetris(10, 20, stream, true, host, level, bMode, bHeight); // Transmitter: the form events control this instance and the updates are sent to the opponent.
+            t2 = new NetworkTetris(10, 20, stream, false, host, level, bMode, bHeight); // Receiver: the network stream updates this instance with the opponent moves.
+
+            if (!host)
+                bMode = t1.BMode; // If the player is not the host, update the chosen mode.
 
             this.localGameOver = false;
             this.remoteGameOver = false;
@@ -114,22 +117,22 @@ namespace Tetris
             for (int i = 0; i < 7; i++)
                 for (int j = 0; j < 4; j++)
                 {
-                    e.Graphics.FillRectangle(this.palette.Get(this.t1.Level, t[i].Appearance[0]), 75 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10, 10, 10);
-                    e.Graphics.DrawImage((t[i].Appearance[1]) ? bmpB : bmpA, 75 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10);
+                    e.Graphics.FillRectangle(this.palette.Get(this.t1.Level, t[i].Appearance[0]), 75 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10 + 30, 10, 10);
+                    e.Graphics.DrawImage((t[i].Appearance[1]) ? bmpB : bmpA, 75 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10 + 30);
                 }
             for (int i = 0; i < 7; i++)
             {
-                e.Graphics.DrawString(this.t1.Statistics[i].ToString(), DefaultFont, Brushes.Black, 40, 40 * i);
-                e.Graphics.DrawString(this.t2.Statistics[i].ToString(), DefaultFont, Brushes.Black, 100, 40 * i);
+                e.Graphics.DrawString(this.t1.Statistics[i].ToString(), DefaultFont, Brushes.Black, 40, 40 * i + 30);
+                e.Graphics.DrawString(this.t2.Statistics[i].ToString(), DefaultFont, Brushes.Black, 100, 40 * i + 30);
             }
                 
-            e.Graphics.DrawString(Properties.Resources.Next, DefaultFont, Brushes.Black, 70, 275);
+            e.Graphics.DrawString(Properties.Resources.Next, DefaultFont, Brushes.Black, 70, 355);
             for (int j = 0; j < 4; j++)
             {
-                e.Graphics.FillRectangle(this.palette.Get(this.t1.Level, t[(int)this.t1.Next].Appearance[0]), 75 + t[(int)this.t1.Next].Get()[j].X * 10, 290 + t[(int)this.t1.Next].Get()[j].Y * 10, 10, 10);
-                e.Graphics.DrawImage((t[(int)this.t1.Next].Appearance[1]) ? bmpB : bmpA, 75 + t[(int)this.t1.Next].Get()[j].X * 10, 290 + t[(int)this.t1.Next].Get()[j].Y * 10);
+                e.Graphics.FillRectangle(this.palette.Get(this.t1.Level, t[(int)this.t1.Next].Appearance[0]), 75 + t[(int)this.t1.Next].Get()[j].X * 10, 370 + t[(int)this.t1.Next].Get()[j].Y * 10, 10, 10);
+                e.Graphics.DrawImage((t[(int)this.t1.Next].Appearance[1]) ? bmpB : bmpA, 75 + t[(int)this.t1.Next].Get()[j].X * 10, 370 + t[(int)this.t1.Next].Get()[j].Y * 10);
             }
-
+            
             StringFormat f = new StringFormat();
             f.LineAlignment = StringAlignment.Center;
             f.Alignment = StringAlignment.Center;
@@ -159,19 +162,19 @@ namespace Tetris
 
 
             for (int i = 0; i < 10; i++)
-                for (int j = 0; j < 16; j++)
+                for (int j = 0; j < 20; j++)
                 {
                     if (b[j][2 * i] | b[j][2 * i + 1])
                     {
-                        e.Graphics.FillRectangle(this.palette.Get(t2.Level, b[j][2 * i]), 20 * i, 15 * 20 - 20 * j, 20, 20);
+                        e.Graphics.FillRectangle(this.palette.Get(t2.Level, b[j][2 * i]), 20 * i, 19 * 20 - 20 * j, 20, 20);
                         if (b[j][2 * i + 1])
-                            e.Graphics.DrawImage(bmpB, 20 * i, 15 * 20 - 20 * j);
+                            e.Graphics.DrawImage(bmpB, 20 * i, 19 * 20 - 20 * j);
                         else
-                            e.Graphics.DrawImage(bmpA, 20 * i, 15 * 20 - 20 * j);
+                            e.Graphics.DrawImage(bmpA, 20 * i, 19 * 20 - 20 * j);
                     }
 
 #if DEBUG
-                    e.Graphics.DrawRectangle(Pens.Black, panel1.Width / 10 * i, panel1.Height / 16 * j, panel1.Width / 10, panel1.Height / 16);
+                    e.Graphics.DrawRectangle(Pens.White, panel1.Width / 10 * i, panel1.Height / 20 * j, panel1.Width / 10, panel1.Height / 20);
 #endif
                 }
         }
@@ -293,18 +296,18 @@ namespace Tetris
 
 
             for (int i = 0; i < 10; i++)
-                for (int j = 0; j < 16; j++)
+                for (int j = 0; j < 20; j++)
                 {
                     if (b[j][2 * i] | b[j][2 * i + 1])
                     {
-                        e.Graphics.FillRectangle(this.palette.Get(t1.Level, b[j][2 * i]), 20 * i, 15 * 20 - 20 * j, 20, 20);
+                        e.Graphics.FillRectangle(this.palette.Get(t1.Level, b[j][2 * i]), 20 * i, 19 * 20 - 20 * j, 20, 20);
                         if (b[j][2 * i + 1])
-                            e.Graphics.DrawImage(bmpB, 20 * i, 15 * 20 - 20 * j);
+                            e.Graphics.DrawImage(bmpB, 20 * i, 19 * 20 - 20 * j);
                         else
-                            e.Graphics.DrawImage(bmpA, 20 * i, 15 * 20 - 20 * j);
+                            e.Graphics.DrawImage(bmpA, 20 * i, 19 * 20 - 20 * j);
                     }
 #if DEBUG
-                    e.Graphics.DrawRectangle(Pens.Black, panel1.Width / 10 * i, panel1.Height / 16 * j, panel1.Width / 10, panel1.Height / 16);
+                    e.Graphics.DrawRectangle(Pens.White, panel1.Width / 10 * i, panel1.Height / 20 * j, panel1.Width / 10, panel1.Height / 20);
 #endif
                 }
         }

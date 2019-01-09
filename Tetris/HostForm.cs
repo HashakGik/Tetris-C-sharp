@@ -64,7 +64,7 @@ namespace Tetris
         private int tries;
 
         /// <summary>
-        /// Timer's tick event handler. If no connection was estabilished after 30 ticks, times out.
+        /// Timer's tick event handler. If no connection is estabilished after 30 ticks, times out.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

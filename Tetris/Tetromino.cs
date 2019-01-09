@@ -4,16 +4,18 @@ namespace Tetris
 {
     /// <summary>
     /// Tetromino data structure. Each tetromino is composed of four blocks. One of them acts as a pivot and the other three can rotate around it.
+    /// The coordinates of each block are relative to the pivot.
     /// </summary>
     class Tetromino
     {
+        /// <summary>
+        /// Tetromino type. Encodes the seven possible pieces with a mnemonic letter resembling the shape.
+        /// </summary>
         public enum Type_t { O = 0, J = 1, L = 2, I = 3, S = 4, Z = 5, T = 6};
         private readonly Point[][] piece; // [rotation id][block number][0 = x, 1 = y]
         private int rotation;
         private bool[] appearance;
         
-        // I tetromini possono avere tre possibili colori: 01 blocco A, colore 1; 10 blocco B colore 2, 11 blocco B colore 1. Il primo bit indica il colore del blocco, il secondo la forma
-
         /// <summary>
         /// A block can have one of three appearances encoded by two bits. The four blocks of a tetromino share the same appearance.
         /// The first bit encodes the block type (A or B) and the second encodes the color (A or B). If both bits are set to 0, there is no block.
@@ -47,7 +49,7 @@ namespace Tetris
             }
 
             this.piece[0][0].X = this.piece[0][0].Y = this.piece[1][0].X = this.piece[1][0].Y =
-                this.piece[2][0].X = this.piece[2][0].Y = this.piece[3][0].X = this.piece[3][0].Y = 0; // One of the four blocks is always at (0,0)
+                this.piece[2][0].X = this.piece[2][0].Y = this.piece[3][0].X = this.piece[3][0].Y = 0; // The pivot is always at (0,0).
 
             this.appearance = new bool[2];
             switch (t)
@@ -62,7 +64,7 @@ namespace Tetris
                     this.appearance[0] = false;
                     this.appearance[1] = true;
                     break;
-                case Type_t.I: // Rotation 0 and 2, and rotation 1 and 3 are equal.
+                case Type_t.I: // Rotations 0 and 2, and rotations 1 and 3 are equal.
                     this.piece[0][1].X = this.piece[2][1].X = 1;
                     this.piece[0][1].Y = this.piece[2][1].Y = 0;
                     this.piece[0][2].X = this.piece[2][2].X = -1;

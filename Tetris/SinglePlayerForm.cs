@@ -26,8 +26,8 @@ namespace Tetris
         /// Constructor.
         /// </summary>
         /// <param name="level">Initial level.</param>
-        /// <param name="bMode">Playing mode. Dafault value is for mode A.</param>
-        /// <param name="bHeight">Initial height in B mode.</param>
+        /// <param name="bMode">Playing mode. True for mode B, false for mode A.</param>
+        /// <param name="bHeight">Initial height in mode B.</param>
         public SinglePlayerForm(uint level, bool bMode = false, uint bHeight = 0)
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace Tetris
             }
 
 
-            t = new Tetris(10, 16, level, bMode, bHeight); // The playing field is initialized to the NES values (10 blocks width, 16 blocks height).
+            t = new Tetris(10, 20, level, bMode, bHeight); // The playing field is initialized to the NES values (10 blocks width, 20 blocks height).
             this.Text = Properties.Resources.SingleTitle;
 
             // If in Mode B attaches the victory delegate.
@@ -81,7 +81,7 @@ namespace Tetris
 
 
             t.OnGameOver += delegate () { timer1.Enabled = false; timer2.Enabled = false; MessageBox.Show("Game over" + Environment.NewLine + "Score: " + t.Score); this.Dispose(); }; // TO DO: Save the best scores.
-            t.OnLevelUp += delegate (uint lv) { timer1.Interval = (int)((lv < 20) ? 1000 / (lv + 1) : 50); }; // On level up it speeds up the timer. Maximum speed is achieved on level 20 and above.
+            t.OnLevelUp += delegate (uint lv) { timer1.Interval = (int)((lv < 20) ? 1000 / (lv + 1) : 50); }; // On level up it speeds up the timer. Maximum speed is achieved on level 20.
 
             // It fires the initial level up to set the correct timer interval.
             t.OnLevelUp(t.Level);
@@ -113,20 +113,20 @@ namespace Tetris
             }
             else
                 for (int i = 0; i < 10; i++)
-                    for (int j = 0; j < 16; j++)
+                    for (int j = 0; j < 20; j++)
                     {
                         if (b[j][2 * i] | b[j][2 * i + 1])
                         {
-                            e.Graphics.FillRectangle(this.palette.Get(t.Level, b[j][2 * i]), 20 * i, 15 * 20 - 20 * j, 20, 20);
+                            e.Graphics.FillRectangle(this.palette.Get(t.Level, b[j][2 * i]), 20 * i, 19 * 20 - 20 * j, 20, 20);
                             if (b[j][2 * i + 1])
-                                e.Graphics.DrawImage(bmpB, 20 * i, 15 * 20 - 20 * j);
+                                e.Graphics.DrawImage(bmpB, 20 * i, 19 * 20 - 20 * j);
                             else
-                                e.Graphics.DrawImage(bmpA, 20 * i, 15 * 20 - 20 * j);
+                                e.Graphics.DrawImage(bmpA, 20 * i, 19 * 20 - 20 * j);
                         }
 
 #if DEBUG
                         // For debug purposes show a grid over the field.
-                        e.Graphics.DrawRectangle(Pens.Black, panel1.Width / 10 * i, panel1.Height / 16 * j, panel1.Width / 10, panel1.Height / 16);
+                        e.Graphics.DrawRectangle(Pens.White, panel1.Width / 10 * i, panel1.Height / 20 * j, panel1.Width / 10, panel1.Height / 20);
 #endif
                     }
         }
@@ -168,7 +168,7 @@ namespace Tetris
             }
         }
         /// <summary>
-        /// Keyboard key down event handler. It activates the continuous firing of MoveLeft(), MoveRight() and MoveDown() and pauses the game.
+        /// Keyboard key down event handler. It activates the continuous firing of MoveLeft(), MoveRight() and MoveDown() through timer2 and pauses the game.
         /// The key bindings are decoded from the dictionary.
         /// </summary>
         /// <param name="sender"></param>
@@ -203,7 +203,7 @@ namespace Tetris
             }
         }
         /// <summary>
-        /// Keyboard key up event handler. It deactivates the continuous firing of MoveLeft(), MoveRight() and MoveDown() and fires RotateLeft() and RotateRight().
+        /// Keyboard key up event handler. It deactivates the continuous firing of MoveLeft(), MoveRight() and MoveDown() through timer2 and fires RotateLeft() and RotateRight().
         /// The key bindings are decoded from the dictionary.
         /// </summary>
         /// <param name="sender"></param>
@@ -257,17 +257,17 @@ namespace Tetris
             for (int i = 0; i < 7; i++)
                 for (int j = 0; j < 4; j++)
                 {
-                    e.Graphics.FillRectangle(this.palette.Get(this.t.Level, t[i].Appearance[0]), 20 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10, 10, 10);
-                    e.Graphics.DrawImage((t[i].Appearance[1]) ? bmpB : bmpA, 20 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10);
+                    e.Graphics.FillRectangle(this.palette.Get(this.t.Level, t[i].Appearance[0]), 20 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10 + 30, 10, 10);
+                    e.Graphics.DrawImage((t[i].Appearance[1]) ? bmpB : bmpA, 20 + t[i].Get()[j].X * 10, i * 40 + t[i].Get()[j].Y * 10 + 30);
                 }
             for (int i = 0; i < 7; i++)
-                e.Graphics.DrawString(this.t.Statistics[i].ToString(), DefaultFont, Brushes.Black, 55, 40 * i);
-            e.Graphics.DrawString(Properties.Resources.Next, DefaultFont, Brushes.Black, 20, 270);
+                e.Graphics.DrawString(this.t.Statistics[i].ToString(), DefaultFont, Brushes.Black, 55, 40 * i + 30);
+            e.Graphics.DrawString(Properties.Resources.Next, DefaultFont, Brushes.Black, 20, 350);
             if (!this.paused)
                 for (int j = 0; j < 4; j++)
                 {
-                    e.Graphics.FillRectangle(this.palette.Get(this.t.Level, t[(int)this.t.Next].Appearance[0]), 20 + t[(int)this.t.Next].Get()[j].X * 10, 290 + t[(int)this.t.Next].Get()[j].Y * 10, 10, 10);
-                    e.Graphics.DrawImage((t[(int)this.t.Next].Appearance[1]) ? bmpB : bmpA, 20 + t[(int)this.t.Next].Get()[j].X * 10, 290 + t[(int)this.t.Next].Get()[j].Y * 10);
+                    e.Graphics.FillRectangle(this.palette.Get(this.t.Level, t[(int)this.t.Next].Appearance[0]), 20 + t[(int)this.t.Next].Get()[j].X * 10, 370 + t[(int)this.t.Next].Get()[j].Y * 10, 10, 10);
+                    e.Graphics.DrawImage((t[(int)this.t.Next].Appearance[1]) ? bmpB : bmpA, 20 + t[(int)this.t.Next].Get()[j].X * 10, 370 + t[(int)this.t.Next].Get()[j].Y * 10);
                 }
 
             StringFormat f = new StringFormat();

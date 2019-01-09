@@ -36,11 +36,11 @@ namespace Tetris
             this.brushes[9, 1] = new SolidBrush(Color.FromArgb(0xfc, 0xa0, 0x44));
         }
         /// <summary>
-        /// Returns a color from the palette.
+        /// Gets a color from the palette.
         /// </summary>
         /// <param name="level">Current level.</param>
         /// <param name="blockType">Current block type.</param>
-        /// <returns></returns>
+        /// <returns>The requested color.</returns>
         public SolidBrush Get(uint level, bool blockType)
         {
             return brushes[level % 10, (blockType) ? 0 : 1];

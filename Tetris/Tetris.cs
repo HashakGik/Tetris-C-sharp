@@ -11,8 +11,8 @@ namespace Tetris
     /// - No wall kick (if there is a lateral obstacle, the tetromino can't rotate), but the tetromino is allowed to rotate even if it overflows the upper side of the field
     /// - A level up is triggered once the number of lines cleared reaches ten times the current level plus one
     /// - Mode B is won by clearing 25 lines. The initial height determines how many random blocks are placed at the beginning
-    /// - No recursive gravity (after a line is cleared, every block will fall together, empty spaces are not filled by single detached blocks)
-    /// - The score depends only on the number of consecutive lines cleared and the current level (since there is no recursive gravity, there can't be more than four consecutive lines cleared)
+    /// - No recursive gravity (after a line is cleared, every block will fall together, empty spaces are not filled by detached blocks)
+    /// - The score depends only on the number of consecutive lines cleared and the current level (since there is no recursive gravity, there can't be more than four consecutive lines cleared).
     /// </summary>
     class Tetris
     {
@@ -81,6 +81,12 @@ namespace Tetris
             { return this.next.Type; }
         }
 
+        public bool BMode
+        {
+            get
+            { return this.bMode; }
+        }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -122,7 +128,7 @@ namespace Tetris
             if (this.bMode)
             {
                 this.Lines = 25;
-                // In mode B populates the field with a number of blocks between 6% and 7% (of the playing field, excluding the overflow area on top) multiplied by the chosen height.
+                // In mode B populates the field with a number of blocks between 6% and 7% of the playing field (excluding the overflow area on top) multiplied by the chosen height.
                 int numBlocks = (int) (this.w * h * this.bHeight * (this.r.NextDouble() + 6) / 100.0);
                 int tmp;
 
@@ -203,7 +209,7 @@ namespace Tetris
                 this.current.RotateLeft();
         }
         /// <summary>
-        /// Moves the tetromino down one block. If there is a collision it has landed and it must check for lines to be cleared and it must generate a new tetromino.
+        /// Moves the tetromino down one block. If there is a collision it has landed and it must check for lines to be cleared and generate a new tetromino.
         /// </summary>
         virtual public void MoveDown()
         {
@@ -255,7 +261,7 @@ namespace Tetris
                 this.y = this.h - 3;
                 this.x = this.w / 2 - 1;
 
-                // Increase the score if there are lines cleared.
+                // Increase the score if there are lines cleared. The same NES scoring rules are applied.
                 switch (this.consecutiveLinesCleared)
                 {
                     case 1:
@@ -315,6 +321,10 @@ namespace Tetris
             if (this.CheckCollision())
                 this.x--;
         }
+
+        /// <summary>
+        /// Updates the game. If there is an initial collision (the current tetromino is stuck) fires the gameover, otherwise moves the tetromino downwards.
+        /// </summary>
         virtual public void Update()
         {
             if (this.CheckCollision())

@@ -7,8 +7,8 @@ using System.Threading;
 namespace Tetris
 {
     /// <summary>
-    /// Derived class from Tetris which allows to send and receive state updates via a network stream. A worker thread interacts with the stream.
-    /// Since the stream is already opened, it can work with any protocol.
+    /// Class derived from Tetris which allows to send and receive state updates via a network stream. A worker thread interacts with the stream.
+    /// Since it interacts with an already opened stream, it can work with any protocol.
     /// </summary>
     class NetworkTetris : Tetris
     {
@@ -233,7 +233,7 @@ namespace Tetris
         /// <summary>
         /// Encodes the current state and sends it over the network stream. Each "packet" has a fixed size of 48 bytes + width * height * 2 bits.
         /// The first 48 bytes are treated as 12 Int32 which encode the following data:
-        /// - 0: Running game if 0, game over if 1
+        /// - 0: Running game if 0, game over if 1. the remaining 31 bits can be used to encode more flags in the future.
         /// - 1..7: Tetrominoes' statistics
         /// - 8..9: Current score (Int64)
         /// - 10: Current level
@@ -322,7 +322,7 @@ namespace Tetris
         /// <summary>
         /// Gets the current playing field. If it's a receiver  it must synchronize with the worker thread.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Playing field (see Tetris class).</returns>
         public override List<BitArray> GetImage()
         {
             List<BitArray> ret;

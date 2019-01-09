@@ -9,7 +9,7 @@ The objective of [Tetris](https://en.wikipedia.org/wiki/Tetris) is to place as m
 The Nintendo Entertainment System (NES) mechanics are the following:
 
 - Only the seven tetrominoes are allowed (`O`, `I`, `J`, `L`, `Z`, `S` and `T` pieces)
-- The game is played inside a `10x16` field
+- The game is played inside a `10x20` field
 - Clearing more than one line at once grants more points (proportional to the current level)
 - Every ten lines cleared, the game levels up and the falling speed increases up to level 20
 - Only soft drop is allowed (the drop button makes the tetromino fall faster, but it won't land immediately, allowing the player to revert to normal falling speed). If a tetromino lands during soft drop, bonus points are given
@@ -23,10 +23,15 @@ For more informations about the NES mechanics see: <https://meatfighter.com/nint
 The following are some screenshots:
 
 ![Mode A](Screenshots/modea.gif "Mode A game")
+<br/>
 ![Mode B](Screenshots/modeb.png "Mode B game")
+<br/>
 ![Multiplayer](Screenshots/multiplayer.png "Multiplayer game")
+<br/>
 ![Host form](Screenshots/host.png "Host game form")
+<br/>
 ![Join form](Screenshots/join.png "Join game form")
+<br/>
 ![Settings form](Screenshots/settings.png "Keyboard settings form")
 
 
@@ -44,7 +49,7 @@ The controls (`MoveLeft`, `MoveRight`, `RotateLeft`, `RotateRight`, `Drop` and `
 Remarks
 -------
 
-- Although the class `Tetris` allows to set width and height of the playing field (the forms use the default `10x16` playing field), the number of lines to be cleared in mode B is hardcoded to 25. This will be eventually refactored
+- Although the class `Tetris` allows to set width and height of the playing field (the forms use the default `10x20` playing field), the number of lines to be cleared in mode B is hardcoded to 25. This will be eventually refactored
 - During a line clear, the line will simply disappear, without any graphical effect. This will eventually be solved by adding a new delegate (`void OnLineCleared(int lines)`)
 - Multiplayer games travel over a TCP stream, but since every "packet" contains all the informations required to update the remote state in the opponent's window, a flow control for UDP datagrams would be almost trivial to implement (if a "packet" is corrupted ignore it, otherwise update the state), but would also require some error detection/correction mechanism. The "packet" size is small enough to guarantee good performances even over TCP, so it's not a big issue
 - No bonus/malus is given in multiplayer mode (e.g. bonus score when clearing mode B before the opponent, four lines cleared trigger the rise of the opponent's field, etc.)
